@@ -1,3 +1,5 @@
+const { graphqlExpress, graphqilExpress } = require ('apollo-server-express');
+const { makeExecutableSchema } = require('graphql-tools')
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
@@ -7,12 +9,18 @@ const db = require('./db');
 
 const port = 9000;
 const jwtSecret = Buffer.from('Zn8Q5tyZ/G1MHltc4F/gTkVJMlrbKiZt', 'base64');
+const typeDefs = '';
+const resolvers = {};
+const schema = makeExecutableSchema({typeDefs, resolvers});
 
 const app = express();
 app.use(cors(), bodyParser.json(), expressJwt({
   secret: jwtSecret,
   credentialsRequired: false
 }));
+
+app.use('/graphl', graphqlExpress({schema}));
+app.use('/graphiql', graphqilExpress({endpointURL: '/graphql'}));
 
 app.post('/login', (req, res) => {
   const {email, password} = req.body;

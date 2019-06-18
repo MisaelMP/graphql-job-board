@@ -6,7 +6,7 @@ export class NavBar extends Component {
     const { loggedIn, onLogout } = this.props;
     if (loggedIn) {
       return (
-        <nav className="navbar">
+        <nav className="navbar is-dark">
           <div className="navbar-start">
             <Link className="navbar-item" to="/">Home</Link>
             <Link className="navbar-item" to="/jobs/new">Post Job</Link>
@@ -16,7 +16,7 @@ export class NavBar extends Component {
       );
     } else {
       return (
-        <nav className="navbar">
+        <nav className="navbar is-dark">
           <div className="navbar-start">
             <Link className="navbar-item" to="/">Home</Link>
             <Link className="navbar-item" to="/login">Login</Link>
